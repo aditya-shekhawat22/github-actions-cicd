@@ -22,12 +22,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Login to AWS ECR
-        uses: aws-actions/amazon-ecr-login@v1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to AWS ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build and push to DockerHub
         uses: docker/build-push-action@v4
@@ -44,5 +48,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.AWS_ECR_REGISTRY }}/github-actions-demo:latest
-            ${{ secrets.AWS_ECR_REGISTRY }}/github-actions-demo:${{ github.sha }}
+            ${{ steps.login-ecr.outputs.registry }}/github-actions-demo:latest
+            ${{ steps.login-ecr.outputs.registry }}/github-actions-demo:${{ github.sha }}
