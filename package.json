@@ -1,0 +1,24 @@
+{
+  "name": "github-actions-cicd",
+  "version": "1.0.0",
+  "description": "CI/CD Pipeline with github actions ,Docker,and AWS ECR",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditya-shekhawat22/github-actions-cicd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aditya-shekhawat22/github-actions-cicd/issues"
+  },
+  "homepage": "https://github.com/aditya-shekhawat22/github-actions-cicd#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
